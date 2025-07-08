@@ -16,6 +16,8 @@ from model.pedido import Pedido
 from controler.pedidoControler import PedidoControler
 from controler.itemControler import ItemControler
 
+from .CadastrarPedido import CadastrarPedido
+
 #criação da classe janela
 class Janela1:
     
@@ -41,23 +43,9 @@ class Janela1:
             
             if a=='y':
                 print('----------Cadastrar pedido----------\n')
-                adicionar = 'y'
-                pedidos = PedidoControler.search_in_pedidos_all(database_name)
-                numero_pedido = len(pedidos)+1
-                while adicionar == 'y':
-                    item = int(input('Numero do item: '))
-                    quantidade = int(input('Quantidade: '))
-                    
-                    #calculando em tempo de execução o valor do pedido
-                    a = ItemControler.valor_item(database_name, item)
-                    b = a[0][0]*quantidade
-                    print(b)
-                    valor_total+=b
-                    
-                    for x in range(0,quantidade):#acrescentado o mesmo item várias vezes, de acordo com a quantidade
-                        lista_itens.append((numero_pedido,item))
-                    
-                    adicionar = str(input('Adicionar novo item? (y-Sim, n-Nao): '))
+                cadastrarPedido = CadastrarPedido(a, valor_total, lista_itens, database_name)
+
+                valor_total, lista_itens =  cadastrarPedido.cadastrarPedidoView()
                 
                 print('\n----------Finalizar pedido----------\n')
                 print(f'Numero do pedido: {numero_pedido}')
@@ -70,6 +58,7 @@ class Janela1:
                     print('Valor incorreto, recomeçando')
                     break
                 endereco = str(input('Endereco:'))
+                
                 status_aux = int(input('status: 1-preparo, 2-pronto, 3-entregue: '))
                 if status_aux == 1:
                     status = 'preparo'
