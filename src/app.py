@@ -26,6 +26,7 @@ from view.janela2 import Janela2
 from report.relatorio1 import PDF
 
 database = Database('TESTE.db') #criação do banco
+
 cursor = DatabaseControler.conect_database(database.name)
 
 DatabaseControler.create_table_itens(cursor)

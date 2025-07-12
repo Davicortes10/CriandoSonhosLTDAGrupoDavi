@@ -22,11 +22,12 @@ class Database:
         """
         self.name = name
         try:
-            conn = sqlite3.connect(self.name)
-            conn.execute('''
-            PRAGMA foreign_keys = ON;
-            ''')
-            
+            # Certificando-se que self.name é uma string
+            if isinstance(self.name, str):
+                conn = sqlite3.connect(self.name)
+                conn.execute('''PRAGMA foreign_keys = ON;''')
+            else:
+                raise TypeError("O nome do banco de dados deve ser uma string.")
         except OSError as e:
             print(e)
             print('Erro')
@@ -45,8 +46,12 @@ class Database:
 
         """
         try:
-            conn = sqlite3.connect(database_name)
-            return conn
+            # Verifique se database_name é uma string
+            if isinstance(database_name, str):
+                conn = sqlite3.connect(database_name)
+                return conn
+            else:
+                raise TypeError("O nome do banco de dados deve ser uma string.")
         except OSError as e:
             print(e)
             print('Erro na conexão')
