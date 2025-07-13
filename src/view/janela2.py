@@ -57,7 +57,7 @@ class Janela2:
                 print('Informações do Pedido\n')
                 print(f'Status: {informacoes_pedido[1]}\nDelivery: {informacoes_pedido[2]}\nEndereco: {informacoes_pedido[3]}\nData: {informacoes_pedido[4]}\nR$ {informacoes_pedido[5]}')
                 novo_status = int(input('preparo - 1 | pronto - 2 | entregue - 3: '))
-                if novo_status/novo_status != 1:
+                if novo_status not in [1, 2 ,3] != 1:
                     print('Entrada inválida, retornando')
                 else:
                     result = PedidoControler.update_pedido_status_id(database_name, indice, novo_status)
