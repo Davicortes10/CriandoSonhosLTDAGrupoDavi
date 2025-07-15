@@ -59,16 +59,18 @@ class Janela1:
                 
                 print('\n----------Finalizar pedido----------\n')
                 print(f'Numero do pedido: {numero_pedido}')
-                delivery = str(input('Delivery (S/N): ')).lower()
-                if delivery=='s':
-                    delivery = True
-                    endereco = str(input('Endereco:'))
-                elif delivery=='n':
-                    delivery = False
-                else:
-                    print('Valor incorreto, recomeçando')
-                    break
-                
+                while True:
+                    delivery_input = input('Delivery (S/N): ').strip().lower()
+                    if delivery_input == 's':
+                        delivery = True
+                        endereco = input('Endereco:').strip()
+                        break
+                    elif delivery_input == 'n':
+                        delivery = False
+                        endereco = ''
+                        break
+                    else:
+                        print('Entrada inválida. Digite "S" para sim ou "N" para não.')
                 
                 status_aux = int(input('status: 1-preparo, 2-pronto, 3-entregue: '))
                 if status_aux == 1:
