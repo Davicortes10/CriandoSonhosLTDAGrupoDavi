@@ -23,6 +23,7 @@ class Janela1:
     
     @staticmethod
     def mostrar_janela1(database_name: str) -> None:
+        endereco = None
         """
         View para o usuário utilizar o software
         
@@ -42,22 +43,22 @@ class Janela1:
             a = str(input('Cadastrar pedido (y-Sim, n-Nao): '))
             
             if a=='y':
-                print('----------Cadastrar pedido----------\n')
                 cadastrarPedido = CadastrarPedido(a, valor_total, lista_itens, database_name)
 
-                valor_total, lista_itens =  cadastrarPedido.cadastrarPedidoView()
+                valor_total, lista_itens, numero_pedido=  cadastrarPedido.cadastrarPedidoView()
                 
                 print('\n----------Finalizar pedido----------\n')
                 print(f'Numero do pedido: {numero_pedido}')
                 delivery = str(input('Delivery (S/N): ')).lower()
                 if delivery=='s':
                     delivery = True
+                    endereco = str(input('Endereco:'))
                 elif delivery=='n':
                     delivery = False
                 else:
                     print('Valor incorreto, recomeçando')
                     break
-                endereco = str(input('Endereco:'))
+                
                 
                 status_aux = int(input('status: 1-preparo, 2-pronto, 3-entregue: '))
                 if status_aux == 1:

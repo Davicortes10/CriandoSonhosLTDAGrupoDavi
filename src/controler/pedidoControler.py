@@ -41,7 +41,7 @@ class PedidoControler:
         :param database_name: Nome do banco de dados (string)
         :return: Lista de todos os pedidos, ou código de erro em caso de falha
         """
-        print(f"Verificando tipo de database_name: {database_name}, Tipo: {type(database_name)}")
+        #print(f"Verificando tipo de database_name: {database_name}, Tipo: {type(database_name)}")
 
         if not isinstance(database_name, str):  # Verifique se database_name é uma string
             print("Erro: O nome do banco de dados deve ser uma string!")
