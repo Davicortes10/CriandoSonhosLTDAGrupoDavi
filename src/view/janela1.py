@@ -33,9 +33,15 @@ class Janela1:
         a = 'y'
         
         menu = ItemControler.mostrar_itens_menu(database_name)
-        
-        print('----------Menu----------\n')
-        print(f'{menu} \n')
+
+        print('--- Cardápio Disponível ---')
+        print('ID | Nome                  | Tipo   | Preço   | Descrição')
+        print('-------------------------------------------------------------')
+
+        for item in menu:
+            id_, nome, preco, tipo, descricao = item
+            print(f"{id_:<2} | {nome:<21} | {tipo:<6} | R${preco:>6.2f} | {descricao}")
+
         while a=='y':
             lista_itens = []
             valor_total=0
