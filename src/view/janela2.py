@@ -56,15 +56,24 @@ class Janela2:
                 print(f'\nResumo do pedido {indice}: \n {exibir_tela}\nItens: {quantidade_itens}\n')
                 print('Informações do Pedido\n')
                 print(f'Status: {informacoes_pedido[1]}\nDelivery: {informacoes_pedido[2]}\nEndereco: {informacoes_pedido[3]}\nData: {informacoes_pedido[4]}\nR$ {informacoes_pedido[5]}')
-                novo_status = int(input('preparo - 1 | pronto - 2 | entregue - 3: '))
-                if novo_status not in [1, 2 ,3]:
-                    print('Entrada inválida, retornando')
+                novo_status = input('Digite o novo status (1-preparo | 2-pronto | 3-entregue): ').strip()
+
+                status_mapping = {
+                    '1': 'preparo',
+                    '2': 'pronto',
+                    '3': 'entregue'
+                }
+
+                if novo_status not in status_mapping:
+                    print('Entrada inválida, retornando ao menu.')
                 else:
+                    status_str = status_mapping[novo_status]
+                    print(status_str)
                     result = PedidoControler.update_pedido_status_id(database_name, indice, novo_status)
                     if result:
-                        print(f'Status do Pedido {indice} atualizado com sucesso')
+                        print(f'Status do Pedido {indice} atualizado para "{status_str}" com sucesso.')
                     else:
-                        print('Erro ao atualizar')
+                        print('Erro ao atualizar o status do pedido.')
             else:
                 print('Indice inválido')    
         else:
