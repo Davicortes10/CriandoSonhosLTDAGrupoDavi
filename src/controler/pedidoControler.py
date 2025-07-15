@@ -81,11 +81,11 @@ class PedidoControler:
         :param status: Novo estado do pedido a ser atualizado (str)
         :return: Dados do pedido (list) ou código de erro (string).
         """
-        if status == 1:
+        if status == "1":
             status = 'preparo'
-        elif status == 2:
+        elif status == "2":
             status = 'pronto'
-        elif status == 3:
+        elif status == "3":
             status = 'entregue'
         else:
             return False
